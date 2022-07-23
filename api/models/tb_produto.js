@@ -22,5 +22,12 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'tb_produto',
   });
+  tb_produto.associate = function(models) {
+    // associations can be defined here
+
+    tb_produto.hasMany(models.tb_pedido, {
+      foreignKey: 'id_produto'
+    })
+  };
   return tb_produto;
 };

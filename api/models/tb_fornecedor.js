@@ -24,5 +24,18 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'tb_fornecedor',
   });
+  tb_fornecedor.associate = function(models) {
+    // associations can be defined here
+
+    tb_fornecedor.hasMany(models.tb_pedido, {
+      foreignKey: 'id_fornecedor'
+    })
+    tb_fornecedor.hasMany(models.tb_produto, {
+      foreignKey: 'id_fornecedor'
+    })
+    tb_fornecedor.hasMany(models.tb_login, {
+      foreignKey: 'id_fornecedor'
+    })
+  };
   return tb_fornecedor;
 };

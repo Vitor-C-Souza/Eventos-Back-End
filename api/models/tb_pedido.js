@@ -19,5 +19,18 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'tb_pedido',
   });
+  tb_pedido.associate = function(models) {
+    // associations can be defined here
+
+    tb_pedido.belongsTo(models.tb_fornecedor, {
+      foreignKey: 'estudante_id'
+    })
+    tb_pedido.belongsTo(models.tb_produto, {
+      foreignKey: 'turma_id'
+    })
+    tb_pedido.belongsTo(models.tb_usuario, {
+      foreignKey: 'turma_id'
+    })
+  };
   return tb_pedido;
 };

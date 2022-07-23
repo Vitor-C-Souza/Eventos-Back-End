@@ -25,5 +25,17 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'tb_usuario',
   });
+  tb_usuario.associate = function(models) {
+    // associations can be defined here
+
+    tb_usuario.hasMany(models.tb_pedido, {
+      foreignKey: 'id_usuario'
+    })
+    tb_usuario.hasMany(models.Matriculas, {
+      foreignKey: 'estudante_id',
+      scope: { status: 'confirmado' },
+      as: 'aulasMatriculadas'
+    })
+  };
   return tb_usuario;
 };
