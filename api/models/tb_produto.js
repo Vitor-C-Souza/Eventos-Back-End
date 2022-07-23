@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
     tb_produto.hasMany(models.tb_pedido, {
       foreignKey: 'id_produto'
     })
+    tb_produto.belongsTo(models.tb_fornecedor, {
+      foreignKey: 'id_fornecedor'
+    })
   };
   return tb_produto;
 };

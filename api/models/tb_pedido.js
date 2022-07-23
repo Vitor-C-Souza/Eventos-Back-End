@@ -23,13 +23,13 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
 
     tb_pedido.belongsTo(models.tb_fornecedor, {
-      foreignKey: 'estudante_id'
+      foreignKey: 'id_fornecedor'
     })
     tb_pedido.belongsTo(models.tb_produto, {
-      foreignKey: 'turma_id'
+      foreignKey: 'id_produto'
     })
     tb_pedido.belongsTo(models.tb_usuario, {
-      foreignKey: 'turma_id'
+      foreignKey: 'id_usuario'
     })
   };
   return tb_pedido;
