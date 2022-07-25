@@ -31,10 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     tb_usuario.hasMany(models.tb_pedido, {
       foreignKey: 'id_usuario'
     })
-    tb_usuario.hasMany(models.Matriculas, {
-      foreignKey: 'estudante_id',
-      scope: { status: 'confirmado' },
-      as: 'aulasMatriculadas'
+    tb_usuario.hasOne(models.login, {
+      foreignKey: 'id_usuario',
+
     })
   };
   return tb_usuario;

@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     tb_produto.belongsTo(models.tb_fornecedor, {
       foreignKey: 'id_fornecedor'
     })
+    tb_produto.belongsTo(models.tb_usuario, {
+      foreignKey: 'id_usuario'
+    })
   };
   return tb_login;
 };
