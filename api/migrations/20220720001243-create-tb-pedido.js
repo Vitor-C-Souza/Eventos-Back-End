@@ -18,6 +18,20 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      deletedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      id_usuario:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references:  {model: 'tb_usuarios', key: 'id' }
+      },
+      id_fornecedor:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references:  {model: 'tb_fornecedors', key: 'id' }
       }
     });
   },
