@@ -8,8 +8,8 @@ class usuarioController {
     static async pegaTodosOsUsuarios(req, res) {
       try {
 
-        const todosOsNiveis = await usuarioServices.pegaTodosOsRegistros()
-        return res.status(200).json(todosOsNiveis)
+        const todosOsUsuarios = await usuarioServices.pegaTodosOsRegistros()
+        return res.status(200).json(todosOsUsuarios)
 
       } catch (error) {
 
@@ -31,12 +31,12 @@ class usuarioController {
     }
     
     static async criaUsuario(req, res){
-        const NovoNivel = req.body
+        const NovoUsuario = req.body
 
         try{
-            const NivelCriado = await usuarioServices.criaRegistro(NovoNivel)
+            const UsuarioCriado = await usuarioServices.criaRegistro(NovoUsuario)
 
-            return res.status(200).json(NivelCriado)
+            return res.status(200).json(UsuarioCriado)
         }catch(error){
             return res.status(500).json(error.message) 
         }
@@ -47,11 +47,11 @@ class usuarioController {
         const { id } = req.params
 
         try{
-            await nivelServices.atualizaRegistro(NovaInfo, id)
+            await usuarioServices.atualizaRegistro(NovaInfo, id)
 
-            const NivelAtualizado = await usuarioServices.pegaUmRegistro(id)
+            const usuarioAtualizado = await usuarioServices.pegaUmRegistro(id)
 
-            return res.status(200).json(NivelAtualizado)
+            return res.status(200).json(usuarioAtualizado)
         }catch(error){
             return res.status(500).json(error.message)
         }
