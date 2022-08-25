@@ -2,7 +2,6 @@
 const {
   Model
 } = require('sequelize');
-const tb_produto = require('./tb_produto');
 module.exports = (sequelize, DataTypes) => {
   class tb_login extends Model {
     /**
@@ -24,10 +23,10 @@ module.exports = (sequelize, DataTypes) => {
   tb_login.associate = function(models) {
     // associations can be defined here
 
-    tb_produto.belongsTo(models.tb_fornecedor, {
+    tb_login.belongsTo(models.tb_fornecedor, {
       foreignKey: 'id_fornecedor'
     })
-    tb_produto.belongsTo(models.tb_usuario, {
+    tb_login.belongsTo(models.tb_usuario, {
       foreignKey: 'id_usuario'
     })
   };

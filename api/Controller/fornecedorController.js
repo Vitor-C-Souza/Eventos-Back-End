@@ -1,14 +1,14 @@
 const database = require('../models')
 
 const { fornecedorServices } = require('../services')
-const fornecedorServices = new fornecedorServices()
+const FornecedorServices = new fornecedorServices()
 
 class fornecedorController {
 
     static async pegaTodosOsfornecedor(req, res) {
       try {
 
-        const todosOsfornecedor = await fornecedorServices.pegaTodosOsRegistros()
+        const todosOsfornecedor = await FornecedorServices.pegaTodosOsRegistros()
         return res.status(200).json(todosOsfornecedor)
 
       } catch (error) {
@@ -22,7 +22,7 @@ class fornecedorController {
         const { id } = req.params
 
         try{
-            const PegaUm = await forencedorServices.pegaUmFornecedor(id)
+            const PegaUm = await FornecedorServices.pegaUmFornecedor(id)
 
             return res.status(200).json(PegaUm)
         }catch(error){
@@ -34,7 +34,7 @@ class fornecedorController {
         const Novofornecedor = req.body
 
         try{
-            const fornecedorCriado = await fornecedorServices.criaFornecedor(Novofornecedor)
+            const fornecedorCriado = await FornecedorServices.criaRegistro(Novofornecedor)
 
             return res.status(200).json(fornecedorCriado)
         }catch(error){
@@ -47,9 +47,9 @@ class fornecedorController {
         const { id } = req.params
 
         try{
-            await fornecedorServices.atualizaRegistro(NovaInfo, id)
+            await fornecedoresServices.atualizaRegistro(NovaInfo, id)
 
-            const fornecedorAtualizado = await fornecedorServices.pegaUmRegistro(id)
+            const fornecedorAtualizado = await FornecedorServices.pegaUmRegistro(id)
 
             return res.status(200).json(fornecedorAtualizado)
         }catch(error){
@@ -61,7 +61,7 @@ class fornecedorController {
         const { id } = req.params
 
         try{
-            await fornecedorServices.apagaFornecedor(id)
+            await FornecedorServices.apagaFornecedor(id)
 
             return res.status(200).json(`id ${id} foi deletado`)
         }catch(error){

@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     tb_usuario.hasMany(models.tb_pedido, {
       foreignKey: 'id_usuario'
     })
-    tb_usuario.hasOne(models.login, {
+    tb_usuario.hasOne(models.tb_login, {
       foreignKey: 'id_usuario',
 
     })
