@@ -1,4 +1,4 @@
-const database = require('../models').default;
+const database = require('../models')
 
 class Services {
     constructor(nomeDoModelo) {

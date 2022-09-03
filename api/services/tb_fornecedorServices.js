@@ -1,8 +1,8 @@
-const Services = require('./Services')
+const Services = require('./services')
 
 class fornecedorServices extends Services {
     constructor(){
-        super('tb_fornecedors')
+        super('tb_fornecedor')
     }
 
     async pegaTodosOsRegistros(){

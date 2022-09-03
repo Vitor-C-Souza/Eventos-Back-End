@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   tb_fornecedor.init({
     Razao_social_fornecedor: DataTypes.STRING,
     Nome_fantasia_fornecedor: DataTypes.STRING,
-    Cpf_fornecedor: DataTypes.INTEGER,
+    Cpf_fornecedor: DataTypes.BIGINT(11),
     Tipo_servico_fonercedor: DataTypes.STRING,
     Endereço_fornecedor: DataTypes.STRING,
     Incricao_estatual_fornecedor: DataTypes.INTEGER

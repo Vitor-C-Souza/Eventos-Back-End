@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       Cpf_fornecedor: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT(11)
       },
       Tipo_servico_fonercedor: {
         type: Sequelize.STRING
