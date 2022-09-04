@@ -1,14 +1,14 @@
 const database = require('../models')
 
 const { usuarioServices } = require('../services')
-const usuarioServices = new usuarioServices()
+const UsuarioServices = new usuarioServices()
 
 class usuarioController {
 
     static async pegaTodosOsUsuarios(req, res) {
       try {
 
-        const todosOsUsuarios = await usuarioServices.pegaTodosOsRegistros()
+        const todosOsUsuarios = await UsuarioServices.pegaTodosOsRegistros()
         return res.status(200).json(todosOsUsuarios)
 
       } catch (error) {
@@ -22,7 +22,7 @@ class usuarioController {
         const { id } = req.params
 
         try{
-            const PegaUm = await usuarioServices.pegaUmRegistro(id)
+            const PegaUm = await UsuarioServices.pegaUmRegistro(id)
 
             return res.status(200).json(PegaUm)
         }catch(error){
@@ -34,7 +34,7 @@ class usuarioController {
         const NovoUsuario = req.body
 
         try{
-            const UsuarioCriado = await usuarioServices.criaRegistro(NovoUsuario)
+            const UsuarioCriado = await UsuarioServices.criaRegistro(NovoUsuario)
 
             return res.status(200).json(UsuarioCriado)
         }catch(error){
@@ -47,9 +47,9 @@ class usuarioController {
         const { id } = req.params
 
         try{
-            await usuarioServices.atualizaRegistro(NovaInfo, id)
+            await UsuarioServices.atualizaRegistro(NovaInfo, id)
 
-            const usuarioAtualizado = await usuarioServices.pegaUmRegistro(id)
+            const usuarioAtualizado = await UsuarioServices.pegaUmRegistro(id)
 
             return res.status(200).json(usuarioAtualizado)
         }catch(error){
@@ -61,7 +61,7 @@ class usuarioController {
         const { id } = req.params
 
         try{
-            await usuarioServices.apagaRegistro(id)
+            await UsuarioServices.apagaRegistro(id)
 
             return res.status(200).json(`id ${id} foi deletado`)
         }catch(error){

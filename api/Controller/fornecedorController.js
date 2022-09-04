@@ -22,7 +22,7 @@ class fornecedorController {
         const { id } = req.params
 
         try{
-            const PegaUm = await FornecedorServices.pegaUmFornecedor(id)
+            const PegaUm = await FornecedorServices.pegaUmRegistro(id)
 
             return res.status(200).json(PegaUm)
         }catch(error){
@@ -42,12 +42,12 @@ class fornecedorController {
         }
     }
 
-    static async atualizaUsuario(req, res){
+    static async atualizaFornecedor(req, res){
         const NovaInfo = req.body
         const { id } = req.params
 
         try{
-            await fornecedoresServices.atualizaRegistro(NovaInfo, id)
+            await FornecedorServices.atualizaRegistro(NovaInfo, id)
 
             const fornecedorAtualizado = await FornecedorServices.pegaUmRegistro(id)
 
@@ -61,7 +61,7 @@ class fornecedorController {
         const { id } = req.params
 
         try{
-            await FornecedorServices.apagaFornecedor(id)
+            await FornecedorServices.apagaRegistro(id)
 
             return res.status(200).json(`id ${id} foi deletado`)
         }catch(error){

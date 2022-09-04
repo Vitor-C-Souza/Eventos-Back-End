@@ -13,6 +13,6 @@ module.exports = app => {
     //app.use(login)
     //app.use(pedido)
     //app.use(produto)
-    //app.use(usuario)
+    app.use(usuario)
     
 } 

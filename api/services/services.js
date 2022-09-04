@@ -21,7 +21,7 @@ class Services {
 
     async atualizaRegistro(dadosAtualizados, id, transacao = {}){
         return database[this.nomeDoModelo]            
-            .update(dadosAtualizados, { where: { id: id}}, transacao)
+            .update(dadosAtualizados, { where: { id: Number(id) }}, transacao)
 
     }
 
