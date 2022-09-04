@@ -12,13 +12,13 @@ module.exports = {
         type: Sequelize.STRING
       },
       Cpf_ususario: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT(11)
       },
       Telefone_usuario: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT(11)
       },
       Celular_usuario: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT(11)
       },
       Data_nasc_usuario: {
         type: Sequelize.DATE

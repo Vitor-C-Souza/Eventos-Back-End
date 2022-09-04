@@ -15,9 +15,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   tb_usuario.init({
     Nome_usuario: DataTypes.STRING,
-    Cpf_ususario: DataTypes.INTEGER,
-    Telefone_usuario: DataTypes.INTEGER,
-    Celular_usuario: DataTypes.INTEGER,
+    Cpf_ususario: DataTypes.BIGINT(11),
+    Telefone_usuario: DataTypes.BIGINT(11),
+    Celular_usuario: DataTypes.BIGINT(11),
     Data_nasc_usuario: DataTypes.DATE,
     Email_usuario: DataTypes.STRING,
     Endereço_usuario: DataTypes.STRING,
