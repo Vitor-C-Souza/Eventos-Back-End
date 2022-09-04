@@ -1,4 +1,5 @@
 const database = require('../models')
+const moment = require('moment')
 
 const { usuarioServices } = require('../services')
 const UsuarioServices = new usuarioServices()
@@ -9,6 +10,7 @@ class usuarioController {
       try {
 
         const todosOsUsuarios = await UsuarioServices.pegaTodosOsRegistros()
+
         return res.status(200).json(todosOsUsuarios)
 
       } catch (error) {
@@ -32,6 +34,10 @@ class usuarioController {
     
     static async criaUsuario(req, res){
         const NovoUsuario = req.body
+        
+
+        NovoUsuario.Data_nasc_usuario = moment(NovoUsuario.Data_nasc_usuario, 'DD/MM/YYYY').format('YYYY-MM-DD')
+        
 
         try{
             const UsuarioCriado = await UsuarioServices.criaRegistro(NovoUsuario)
@@ -46,7 +52,13 @@ class usuarioController {
         const NovaInfo = req.body
         const { id } = req.params
 
-        try{
+        if(typeof(NovaInfo.Data_nasc_usuario) === 'object'){
+            NovaInfo.Data_nasc_usuario = moment(NovaInfo.Data_nasc_usuario, 'DD/MM/YYYY').format('YYYY-MM-DD')
+        }
+
+        //console.log(NovaInfo.Data_nasc_usuario)
+
+       try{
             await UsuarioServices.atualizaRegistro(NovaInfo, id)
 
             const usuarioAtualizado = await UsuarioServices.pegaUmRegistro(id)
