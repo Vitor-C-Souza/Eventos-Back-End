@@ -12,7 +12,7 @@ module.exports = app => {
     app.use(fornecedor)
     //app.use(login)
     //app.use(pedido)
-    //app.use(produto)
+    app.use(produto)
     app.use(usuario)
     
 } 

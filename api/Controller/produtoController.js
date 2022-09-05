@@ -1,14 +1,14 @@
 const database = require('../models')
 
 const { produtoServices } = require('../services')
-const produtoServices = new produtoServices()
+const ProdutoServices = new produtoServices()
 
 class produtoController {
 
     static async pegaTodosOsProdutos(req, res) {
       try {
 
-        const todosOsProdutos = await produtoServices.pegaTodosOsRegistros()
+        const todosOsProdutos = await ProdutoServices.pegaTodosOsRegistros()
         return res.status(200).json(todosOsProdutos)
 
       } catch (error) {
@@ -22,7 +22,7 @@ class produtoController {
         const { id } = req.params
 
         try{
-            const PegaUm = await produtoServices.pegaUmRegistro(id)
+            const PegaUm = await ProdutoServices.pegaUmRegistro(id)
 
             return res.status(200).json(PegaUm)
         }catch(error){
@@ -34,7 +34,7 @@ class produtoController {
         const Novoproduto = req.body
 
         try{
-            const ProdutoCriado = await produtoServices.criaRegistro(Novoproduto)
+            const ProdutoCriado = await ProdutoServices.criaRegistro(Novoproduto)
 
             return res.status(200).json(ProdutoCriado)
         }catch(error){
@@ -47,9 +47,9 @@ class produtoController {
         const { id } = req.params
 
         try{
-            await produtoServices.atualizaRegistro(NovaInfo, id)
+            await ProdutoServices.atualizaRegistro(NovaInfo, id)
 
-            const produtoAtualizado = await produtoServices.pegaUmRegistro(id)
+            const produtoAtualizado = await ProdutoServices.pegaUmRegistro(id)
 
             return res.status(200).json(produtoAtualizado)
         }catch(error){
@@ -61,7 +61,7 @@ class produtoController {
         const { id } = req.params
 
         try{
-            await loginServices.apagaRegistro(id)
+            await ProdutoServices.apagaRegistro(id)
 
             return res.status(200).json(`id ${id} foi deletado`)
         }catch(error){
