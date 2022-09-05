@@ -49,16 +49,14 @@ class usuarioController {
     }
 
     static async atualizaUsuario(req, res){
+        
         const NovaInfo = req.body
         const { id } = req.params
-
-        if(typeof(NovaInfo.Data_nasc_usuario) === 'object'){
+ 
+        if(NovaInfo.Data_nasc_usuario != null){
             NovaInfo.Data_nasc_usuario = moment(NovaInfo.Data_nasc_usuario, 'DD/MM/YYYY').format('YYYY-MM-DD')
         }
-
-        //console.log(NovaInfo.Data_nasc_usuario)
-
-       try{
+        try{
             await UsuarioServices.atualizaRegistro(NovaInfo, id)
 
             const usuarioAtualizado = await UsuarioServices.pegaUmRegistro(id)
