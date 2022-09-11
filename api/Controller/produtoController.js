@@ -5,11 +5,13 @@ const ProdutoServices = new produtoServices()
 
 class produtoController {
 
-    static async pegaTodosOsProdutos(req, res) {
+    static async pegaTodosOsProdutosDeUmFornecedor(req, res) {
+        const { idfornecedor } = req.params
+        
       try {
 
-        const todosOsProdutos = await ProdutoServices.pegaTodosOsRegistros()
-        return res.status(200).json(todosOsProdutos)
+        const todosOsProdutosDeUmFornecedor = await ProdutoServices.pegaTodosOsRegistros(idfornecedor)
+        return res.status(200).json(todosOsProdutosDeUmFornecedor)
 
       } catch (error) {
 
@@ -19,19 +21,23 @@ class produtoController {
     }
 
     static async pegaUmProduto(req, res) {
-        const { id } = req.params
+        
+        const { idfornecedor, idproduto } = req.params
 
         try{
-            const PegaUm = await ProdutoServices.pegaUmRegistro(id)
+            const PegaUmProduto = await ProdutoServices.pegaUmRegistro(idfornecedor, idproduto)
 
-            return res.status(200).json(PegaUm)
+            return res.status(200).json(PegaUmProduto)
         }catch(error){
             return res.status(500).json(error.message)
         }
     }
     
     static async criaProduto(req, res){
-        const Novoproduto = req.body
+        const { idfornecedor } = req.params
+        const Novoproduto = { ...req.body, id_fornecedor: Number(idfornecedor) }
+
+        
 
         try{
             const ProdutoCriado = await ProdutoServices.criaRegistro(Novoproduto)
@@ -44,12 +50,12 @@ class produtoController {
 
     static async atualizaProduto(req, res){
         const NovaInfo = req.body
-        const { id } = req.params
+        const { idfornecedor, idproduto } = req.params
 
         try{
-            await ProdutoServices.atualizaRegistro(NovaInfo, id)
+            await ProdutoServices.atualizaRegistro(NovaInfo, idfornecedor, idproduto)
 
-            const produtoAtualizado = await ProdutoServices.pegaUmRegistro(id)
+            const produtoAtualizado = await ProdutoServices.pegaUmRegistro( idfornecedor, idproduto )
 
             return res.status(200).json(produtoAtualizado)
         }catch(error){
@@ -58,12 +64,12 @@ class produtoController {
     }
 
     static async apagaProduto(req,res){
-        const { id } = req.params
+        const { idfornecedor, idproduto } = req.params
 
         try{
-            await ProdutoServices.apagaRegistro(id)
+            await ProdutoServices.apagaRegistro(idfornecedor, idproduto)
 
-            return res.status(200).json(`id ${id} foi deletado`)
+            return res.status(200).json(`produto ${idproduto} foi deletado do fornecedor ${idfornecedor}`)
         }catch(error){
             return res.status(500).json(error.message)
         }
