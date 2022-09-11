@@ -1,12 +1,9 @@
 const Services = require('./Services')
+const database = require('../models')
 
 class loginServices extends Services {
     constructor(){
         super('tb_login')
-    }
-
-    async pegaTodosOsRegistros(){
-        return super.pegaTodosOsRegistros()
     }
 
     async pegaUmRegistro(id){
@@ -17,12 +14,38 @@ class loginServices extends Services {
         return super.criaRegistro(dados)
     }
 
-    async atualizaRegistro(NovaInfo, id){
-        return super.atualizaRegistro(NovaInfo, id)
+    async atualizaRegistroC(NovaInfo, id){
+        return super.atualizaRegistros(NovaInfo, { id_usuario: Number(id)} )
     }
 
-    async apagaRegistro(id){
-        return super.apagaRegistro(id)
+    async atualizaRegistroF(NovaInfo, id){
+        return super.atualizaRegistros(NovaInfo, { id_fornecedor: Number(id)} )
+    }
+
+    async apagaRegistroC(id){
+        database[this.nomeDoModelo]
+            .destroy({where:
+                {  id_usuario: Number(id)                    
+                }
+            })
+    }
+    
+    async apagaRegistroF(id){
+        database[this.nomeDoModelo]
+            .destroy({where:
+                {  id_fornecedor: Number(id)                    
+                }
+            })
+    }
+
+    async pegaTodosOsRegistrosC(id_usuario){
+        return database[this.nomeDoModelo]
+            .findOne( { where: { id_usuario: Number(id_usuario) }})
+    }
+
+    async pegaTodosOsRegistrosF(id_fornecedor){
+        return database[this.nomeDoModelo]
+            .findOne( { where: { id_fornecedor: Number(id_fornecedor) }})
     }
 }
 

@@ -10,7 +10,7 @@ module.exports = app => {
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded( {extended: false}))
     app.use(fornecedor)
-    //app.use(login)
+    app.use(login)
     //app.use(pedido)
     app.use(produto)
     app.use(usuario)

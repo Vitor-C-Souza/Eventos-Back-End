@@ -1,40 +1,30 @@
 const database = require('../models')
 
 const { loginServices } = require('../services')
-const loginServices = new loginServices()
+const LoginServices = new loginServices()
 
 class loginController {
 
-    static async pegaTodosOsLogins(req, res) {
-      try {
-
-        const todosOsLogins = await loginServices.pegaTodosOsRegistros()
-        return res.status(200).json(todosOsLogins)
-
-      } catch (error) {
-
-        return res.status(500).json(error.message)
-      
-    }
-    }
-
-    static async pegaUmLogin(req, res) {
-        const { id } = req.params
+    static async pegaLoginCliente(req, res) {
+        const { idUsuario } = req.params
 
         try{
-            const PegaUm = await loginServices.pegaUmRegistro(id)
+            const PegaLogin = await LoginServices.pegaTodosOsRegistrosC(idUsuario)
 
-            return res.status(200).json(PegaUm)
+            return res.status(200).json(PegaLogin)
         }catch(error){
             return res.status(500).json(error.message)
         }
     }
     
-    static async crialogin(req, res){
-        const Novologin = req.body
+    static async crialoginUsuario(req, res){
+        const { idUsuario } = req.params
+        
+        
+        const NovoLoginUsuario = { ...req.body, id_usuario: Number(idUsuario) }
 
         try{
-            const LoginCriado = await loginServices.criaRegistro(Novologin)
+            const LoginCriado = await LoginServices.criaRegistro(NovoLoginUsuario)
 
             return res.status(200).json(LoginCriado)
         }catch(error){
@@ -42,14 +32,14 @@ class loginController {
         }
     }
 
-    static async atualizaLogin(req, res){
+    static async atualizaLoginCliente(req, res){
         const NovaInfo = req.body
-        const { id } = req.params
+        const { idUsuario } = req.params
 
         try{
-            await loginServices.atualizaRegistro(NovaInfo, id)
+            await LoginServices.atualizaRegistroC(NovaInfo, idUsuario)
 
-            const loginAtualizado = await loginServices.pegaUmRegistro(id)
+            const loginAtualizado = await LoginServices.pegaTodosOsRegistrosC(idUsuario)
 
             return res.status(200).json(loginAtualizado)
         }catch(error){
@@ -57,17 +47,73 @@ class loginController {
         }
     }
 
-    static async apagaLogin(req,res){
-        const { id } = req.params
+    static async apagaLoginCliente(req,res){
+        const { idUsuario } = req.params
 
         try{
-            await loginServices.apagaRegistro(id)
+            await LoginServices.apagaRegistro(idUsuario)
 
-            return res.status(200).json(`id ${id} foi deletado`)
+            return res.status(200).json(`Login do usuario ${idUsuario} foi deletado`)
         }catch(error){
             return res.status(500).json(error.message)
         }
     }
+
+    //login fornecedor
+    static async criaLoginForncedor(req,res){
+        const { idFornecedor } = req.params
+        
+        
+        const NovoLoginfornecedor = { ...req.body, id_fornecedor: Number(idFornecedor) }
+
+        try{
+            const LoginCriado = await LoginServices.criaRegistro(NovoLoginfornecedor)
+
+            return res.status(200).json(LoginCriado)
+        }catch(error){
+            return res.status(500).json(error.message) 
+        }
+    }
+
+    static async pegaLoginForncedor(req, res) {
+        const { idFornecedor } = req.params
+
+        try{
+            const PegaLogin = await LoginServices.pegaTodosOsRegistrosF(idFornecedor)
+
+            return res.status(200).json(PegaLogin)
+        }catch(error){
+            return res.status(500).json(error.message)
+        }
+    }
+
+    static async atualizaLoginFornecedor(req, res){
+        const NovaInfo = req.body
+        const { idFornecedor } = req.params
+
+        try{
+            await LoginServices.atualizaRegistroF(NovaInfo, idFornecedor)
+
+            const loginAtualizado = await LoginServices.pegaTodosOsRegistrosF(idFornecedor)
+
+            return res.status(200).json(loginAtualizado)
+        }catch(error){
+            return res.status(500).json(error.message)
+        }
+    }
+
+    static async apagaLoginFornecedor(req,res){
+        const { idFornecedor } = req.params
+
+        try{
+            await LoginServices.apagaRegistroF(idFornecedor)
+
+            return res.status(200).json(`Login do Forncedor ${idFornecedor} foi deletado`)
+        }catch(error){
+            return res.status(500).json(error.message)
+        }
+    }
+
 }
 
 module.exports = loginController
