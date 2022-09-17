@@ -32,6 +32,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references:  {model: 'tb_fornecedors', key: 'id' }
+      },
+      id_produto:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references:  {model: 'tb_usuarios', key: 'id' }
       }
     });
   },

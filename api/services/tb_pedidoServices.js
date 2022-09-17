@@ -1,4 +1,5 @@
 const Services = require('./Services')
+const database = require('../models')
 
 class PedidoServices extends Services {
     constructor(){
@@ -17,9 +18,8 @@ class PedidoServices extends Services {
         return super.criaRegistro(dados)
     }
 
-    async atualizaRegistro(NovaInfo, id){
-        return super.atualizaRegistro(NovaInfo, id)
-    }
+    async atualizaRegistro(NovaInfo, id_fornecedor, id_usuario, id_produto, id_pedido){
+        return super.atualizaRegistros(NovaInfo, { id: Number(id_pedido), id_fornecedor: Number(id_fornecedor), id_usuario: Number(id_usuario), id_produto: Number(id_produto) })    }
 
     async apagaRegistro(id){
         return super.apagaRegistro(id)
