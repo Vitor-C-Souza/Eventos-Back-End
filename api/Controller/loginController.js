@@ -59,6 +59,19 @@ class loginController {
         }
     }
 
+    static async LogarUsuario(req,res){
+        const Login = req.body.login_usuario
+        const Senha = req.body.senha_usuario
+
+        try{
+            const UsuarioEncontrado = await LoginServices.Logar(Login, Senha)
+
+            return res.status(200).json(UsuarioEncontrado.id_usuario)
+        }catch(error){
+            return res.status(500).json(error.message)
+        }
+    }
+
     //login fornecedor
     static async criaLoginForncedor(req,res){
         const { idFornecedor } = req.params
@@ -109,6 +122,19 @@ class loginController {
             await LoginServices.apagaRegistroF(idFornecedor)
 
             return res.status(200).json(`Login do Forncedor ${idFornecedor} foi deletado`)
+        }catch(error){
+            return res.status(500).json(error.message)
+        }
+    }
+
+    static async LogarFornecedor(req,res){
+        const Login = req.body.login_usuario
+        const Senha = req.body.senha_usuario
+
+        try{
+            const UsuarioEncontrado = await LoginServices.Logar(Login, Senha)
+
+            return res.status(200).json(UsuarioEncontrado.id_fornecedor)
         }catch(error){
             return res.status(500).json(error.message)
         }

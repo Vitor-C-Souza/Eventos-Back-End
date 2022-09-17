@@ -47,6 +47,10 @@ class loginServices extends Services {
         return database[this.nomeDoModelo]
             .findOne( { where: { id_fornecedor: Number(id_fornecedor) }})
     }
+
+    async Logar(Login, Senha){
+        return database[this.nomeDoModelo].findOne( { where: { login_usuario: Login, senha_usuario: Senha }}) 
+    }
 }
 
 module.exports = loginServices
