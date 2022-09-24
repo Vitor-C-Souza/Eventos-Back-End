@@ -35,8 +35,9 @@ class usuarioController {
     static async criaUsuario(req, res){
         const NovoUsuario = req.body
         
-
-        NovoUsuario.Data_nasc_usuario = moment(NovoUsuario.Data_nasc_usuario, 'DD/MM/YYYY').format('YYYY-MM-DD')
+        if(NovoUsuario.Data_nasc_usuario != null){
+            NovaInfo.Data_nasc_usuario = moment(NovaInfo.Data_nasc_usuario, 'DD/MM/YYYY').format('YYYY-MM-DD')
+        }
         
 
         try{
