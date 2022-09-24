@@ -36,7 +36,7 @@ class usuarioController {
         const NovoUsuario = req.body
         
         if(NovoUsuario.Data_nasc_usuario != null){
-            NovaInfo.Data_nasc_usuario = moment(NovaInfo.Data_nasc_usuario, 'DD/MM/YYYY').format('YYYY-MM-DD')
+            NovoUsuario.Data_nasc_usuario = moment(NovoUsuario.Data_nasc_usuario, 'DD/MM/YYYY').format('YYYY-MM-DD')
         }
         
 
