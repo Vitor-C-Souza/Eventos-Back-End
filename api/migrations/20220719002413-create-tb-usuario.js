@@ -21,6 +21,7 @@ module.exports = {
         type: Sequelize.BIGINT(11)
       },
       Data_nasc_usuario: {
+        allowNull: true,
         type: Sequelize.DATE
       },
       Email_usuario: {
