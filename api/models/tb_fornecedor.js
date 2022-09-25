@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     Cpf_fornecedor: DataTypes.BIGINT(11),
     Tipo_servico_fonercedor: DataTypes.STRING,
     Endereço_fornecedor: DataTypes.STRING,
+    Celular_fornecedor: DataTypes.BIGINT(11),
     Incricao_estatual_fornecedor: DataTypes.INTEGER
   }, {
     sequelize,

@@ -84,6 +84,7 @@ class fornecedorController {
                 Tipo_servico_fonercedor: NovaInfoFornecedor.Tipo_servico_fonercedor,
                 Endereço_fornecedor: NovaInfoFornecedor.Endereço_fornecedor,
                 Incricao_estatual_fornecedor: NovaInfoFornecedor.Incricao_estatual_fornecedor,
+                Celular_fornecedor: NovaInfoFornecedor.Celular_fornecedor
                 
             }
 
