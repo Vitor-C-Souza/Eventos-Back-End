@@ -11,7 +11,7 @@ module.exports = {
       Nome_usuario: {
         type: Sequelize.STRING
       },
-      Cpf_ususario: {
+      Cpf_usuario: {
         type: Sequelize.BIGINT(11)
       },
       Telefone_usuario: {

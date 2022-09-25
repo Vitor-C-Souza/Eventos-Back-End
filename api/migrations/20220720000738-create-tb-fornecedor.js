@@ -14,6 +14,9 @@ module.exports = {
       Nome_fantasia_fornecedor: {
         type: Sequelize.STRING
       },
+      Email_fornecedor: {
+        type: Sequelize.STRING
+      },
       Cpf_fornecedor: {
         type: Sequelize.BIGINT(11)
       },

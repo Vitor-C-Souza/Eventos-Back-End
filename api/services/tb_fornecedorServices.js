@@ -1,4 +1,5 @@
 const Services = require('./services')
+const database = require('../models')
 
 class fornecedorServices extends Services {
     constructor(){
@@ -23,6 +24,10 @@ class fornecedorServices extends Services {
 
     async apagaRegistro(id){
         return super.apagaRegistro(id)
+    }
+
+    async idFornecedor(CPF){
+        return database[this.nomeDoModelo].findOne( { where: { Cpf_fornecedor: Number(CPF) }})
     }
 }
 

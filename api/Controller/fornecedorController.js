@@ -3,6 +3,9 @@ const database = require('../models')
 const { fornecedorServices } = require('../services')
 const FornecedorServices = new fornecedorServices()
 
+const { loginServices } = require('../services')
+const LoginServices = new loginServices()
+
 class fornecedorController {
 
     static async pegaTodosOsfornecedor(req, res) {
@@ -67,6 +70,40 @@ class fornecedorController {
         }catch(error){
             return res.status(500).json(error.message)
         }
+    }
+
+    static async CriarFornecedorComSenha(req,res){
+        const NovaInfoFornecedor = req.body
+
+        try{
+            const Fornecedor = { 
+                Razao_social_fornecedor: NovaInfoFornecedor.Razao_social_fornecedor,
+                Nome_fantasia_fornecedor: NovaInfoFornecedor.Nome_fantasia_fornecedor,
+                Email_fornecedor: NovaInfoFornecedor.Email_fornecedor,
+                Cpf_fornecedor: NovaInfoFornecedor.Cpf_fornecedor,
+                Tipo_servico_fonercedor: NovaInfoFornecedor.Tipo_servico_fonercedor,
+                Endereço_fornecedor: NovaInfoFornecedor.Endereço_fornecedor,
+                Incricao_estatual_fornecedor: NovaInfoFornecedor.Incricao_estatual_fornecedor,
+                
+            }
+
+            await FornecedorServices.criaRegistro(Fornecedor)         
+
+            const idFornecedor = await FornecedorServices.idFornecedor(NovaInfoFornecedor.Cpf_fornecedor)
+
+            const Login ={
+                login_usuario: NovaInfoFornecedor.Email_fornecedor,
+                senha_usuario: NovaInfoFornecedor.senha_usuario,
+                id_fornecedor: Number(idFornecedor.id)            
+            }
+            
+            await LoginServices.criaRegistro(Login)
+
+            return res.status(200).json(NovaInfoFornecedor)
+        }catch{
+            return res.status(500).json(error.message)
+        }
+
     }
 }
 
