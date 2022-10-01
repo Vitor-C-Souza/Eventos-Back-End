@@ -66,7 +66,9 @@ class loginController {
         try{
             const UsuarioEncontrado = await LoginServices.Logar(Login, Senha)
 
-            return res.status(200).json(UsuarioEncontrado.id_usuario)
+            const id = {id_usuario: Number(UsuarioEncontrado.id_usuario)}
+
+            return res.status(200).json(id)
         }catch(error){
             return res.status(500).json(error.message)
         }
@@ -134,7 +136,9 @@ class loginController {
         try{
             const UsuarioEncontrado = await LoginServices.Logar(Login, Senha)
 
-            return res.status(200).json(UsuarioEncontrado.id_fornecedor)
+            const id = {id_fornecedor: Number(UsuarioEncontrado.id_fornecedor)}
+
+            return res.status(200).json(id)
         }catch(error){
             return res.status(500).json(error.message)
         }
