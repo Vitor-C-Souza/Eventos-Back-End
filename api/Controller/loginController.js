@@ -66,9 +66,16 @@ class loginController {
         try{
             const UsuarioEncontrado = await LoginServices.Logar(Login, Senha)
 
-            const id = {id_usuario: Number(UsuarioEncontrado.id_usuario)}
+            if(UsuarioEncontrado.id_usuario == null){
+                return res.status(200).json(null)
+            }
+            else{
+                const id = {id_usuario: Number(UsuarioEncontrado.id_usuario)}
 
-            return res.status(200).json(id)
+                return res.status(200).json(id)
+            }
+
+            
         }catch(error){
             return res.status(500).json(error.message)
         }
@@ -134,11 +141,18 @@ class loginController {
         const Senha = req.body.senha_usuario
 
         try{
-            const UsuarioEncontrado = await LoginServices.Logar(Login, Senha)
+            const FornecedorEncontrado = await LoginServices.Logar(Login, Senha)
 
-            const id = {id_fornecedor: Number(UsuarioEncontrado.id_fornecedor)}
+            if(FornecedorEncontrado.id_fornecedor == null){
+                return res.status(200).json(null)
+            }
+            else{
+                const id = {id_fornecedor: Number(FornecedorEncontrado.id_fornecedor)}
 
-            return res.status(200).json(id)
+                return res.status(200).json(id)
+            }
+
+            
         }catch(error){
             return res.status(500).json(error.message)
         }
