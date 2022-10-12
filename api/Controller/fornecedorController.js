@@ -6,6 +6,9 @@ const FornecedorServices = new fornecedorServices()
 const { loginServices } = require('../services')
 const LoginServices = new loginServices()
 
+const { produtoServices } = require('../services')
+const ProdutoServices = new produtoServices()
+
 class fornecedorController {
 
     static async pegaTodosOsfornecedor(req, res) {
@@ -104,6 +107,31 @@ class fornecedorController {
         }catch{
             return res.status(500).json(error.message)
         }
+
+    }
+
+    static async FiltroFornecedorProduto(req,res){
+        const { produto } = req.params
+
+        try{
+            const FornecedoresDoProduto = await ProdutoServices.filtro(produto)
+
+            const count = await ProdutoServices.CountFilter(produto)
+
+            var FornecedoresEncontrados = []
+            
+            for(var i = 0; i < count; i++){
+                FornecedoresEncontrados[i] = await FornecedorServices.TodosOsFornecedoresCategoria(Number(FornecedoresDoProduto[i].id_fornecedor))
+            }
+            
+            return res.status(200).json(FornecedoresEncontrados)            
+        }
+        catch{
+
+        }
+
+        
+
 
     }
 }

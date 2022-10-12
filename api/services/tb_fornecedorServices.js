@@ -29,6 +29,13 @@ class fornecedorServices extends Services {
     async idFornecedor(CPF){
         return database[this.nomeDoModelo].findOne( { where: { Cpf_fornecedor: Number(CPF) }})
     }
+
+    async TodosOsFornecedoresCategoria(id){
+        return database[this.nomeDoModelo]
+            .findAll( {            
+                where: {id: id}
+            })
+    }
 }
 
 module.exports = fornecedorServices

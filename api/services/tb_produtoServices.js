@@ -31,6 +31,19 @@ class ProdutoServices extends Services {
                     id_fornecedor: Number(idfornecedor)
                }})
     }
+
+    async filtro(produto){
+        return database[this.nomeDoModelo]
+            .findAll( {
+                attributes: ['id_fornecedor'],
+                where: {Nome_produto: produto}
+            })
+    }
+
+    async CountFilter(produto){
+        return database[this.nomeDoModelo]
+            .count( { where: {Nome_produto: produto} })
+    }
 }
 
 module.exports = ProdutoServices
