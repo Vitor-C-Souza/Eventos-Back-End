@@ -18,8 +18,14 @@ module.exports = (sequelize, DataTypes) => {
     Nome_fantasia_fornecedor: DataTypes.STRING,
     Email_fornecedor: DataTypes.STRING,
     Cpf_fornecedor: DataTypes.BIGINT(11),
+    Cep_fornecedor: DataTypes.INTEGER,
     Tipo_servico_fonercedor: DataTypes.STRING,
     Endereço_fornecedor: DataTypes.STRING,
+    Incricao_estatual_fornecedor: DataTypes.INTEGER,
+    Descricao_fornecedor: DataTypes.STRING(500),
+    nota_fornecedor: DataTypes.INTEGER,
+    quantidade_cliente_fornecedor: DataTypes.INTEGER,
+    imagem_fornecedor: DataTypes.BLOB,
     Celular_fornecedor: DataTypes.BIGINT(11),
     Incricao_estatual_fornecedor: DataTypes.INTEGER
   }, {

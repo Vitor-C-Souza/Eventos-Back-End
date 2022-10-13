@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     Nome_produto: DataTypes.STRING,
     Descricao_produto: DataTypes.STRING,
     valor_produto: DataTypes.FLOAT,
-    disponibilidade_produto: DataTypes.BOOLEAN
+    disponibilidade_produto: DataTypes.BOOLEAN,
+    imagem_produto: DataTypes.BLOB
   }, {
     sequelize,
     modelName: 'tb_produto',

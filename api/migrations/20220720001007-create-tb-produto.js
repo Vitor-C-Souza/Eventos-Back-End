@@ -20,6 +20,9 @@ module.exports = {
       disponibilidade_produto: {
         type: Sequelize.BOOLEAN
       },
+      imagem_produto:{
+        type: Sequelize.BLOB
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
