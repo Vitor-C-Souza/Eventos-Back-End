@@ -36,6 +36,11 @@ class fornecedorServices extends Services {
                 where: {id: id}
             })
     }
+
+    async filtro(tipoServico){
+        return database[this.nomeDoModelo].findAll( { where: {Tipo_servico_fonercedor: tipoServico}})
+
+    }
 }
 
 module.exports = fornecedorServices
