@@ -38,7 +38,7 @@ class fornecedorServices extends Services {
     }
 
     async filtro(tipoServico){
-        return database[this.nomeDoModelo].findAll( { where: {Tipo_servico_fonercedor: tipoServico}})
+        return database[this.nomeDoModelo].findAll( { where: { Tipo_servico_fonercedor: tipoServico }})
 
     }
 }

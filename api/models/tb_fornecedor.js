@@ -27,7 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     quantidade_cliente_fornecedor: DataTypes.INTEGER,
     imagem_fornecedor: DataTypes.BLOB,
     Celular_fornecedor: DataTypes.BIGINT(11),
-    Incricao_estatual_fornecedor: DataTypes.INTEGER
+    Incricao_estatual_fornecedor: DataTypes.INTEGER,
+    valor_max: DataTypes.FLOAT(6),
+    valor_min: DataTypes.FLOAT(6)
   }, {
     sequelize,
     modelName: 'tb_fornecedor',

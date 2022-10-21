@@ -52,6 +52,12 @@ module.exports = {
       },
       imagem_fornecedor:{
         type: Sequelize.BLOB
+      }, 
+      valor_max:{
+        type: Sequelize.FLOAT(6)
+      }, 
+      valor_min:{
+        type: Sequelize.FLOAT(6)
       },
       createdAt: { 
         allowNull: false,
