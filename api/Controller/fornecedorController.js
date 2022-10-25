@@ -111,15 +111,29 @@ class fornecedorController {
     }
 
     static async FiltroFornecedorProduto(req,res){
-        const { produto } = req.params
-
+        const { produto,page } = req.params
+        
         try{  
-            const FornecedoresEncontrados = await FornecedorServices.filtro(produto)          
+            const TodosFornecedoresEncontrados = await FornecedorServices.filtro(produto)
             
-            return res.status(200).json(FornecedoresEncontrados)            
+            var FornecedoresFiltrados = []
+            var count = 0
+            for(var i = (page*5)-5; i < page*5; i++){
+                
+                if(TodosFornecedoresEncontrados[i] == null){
+                    break
+                }
+                
+                FornecedoresFiltrados[count] = TodosFornecedoresEncontrados[i]
+                
+                count++
+                
+            }
+            
+            return res.status(200).json(FornecedoresFiltrados)            
         }
         catch{
-
+            return res.status(500).json(message.error)
         }
 
         
