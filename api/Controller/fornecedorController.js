@@ -110,8 +110,8 @@ class fornecedorController {
 
     }
 
-    static async FiltroFornecedorProduto(req,res){
-        const { produto,page } = req.params
+    static async FiltroFornecedorProdutoPagina(req,res){
+        const { produto, page } = req.params
         
         try{  
             const TodosFornecedoresEncontrados = await FornecedorServices.filtro(produto)
@@ -134,11 +134,19 @@ class fornecedorController {
         }
         catch{
             return res.status(500).json(message.error)
+        } 
+    }
+
+    static async FiltroFornecedorProduto(req,res){
+        const { produto } = req.params
+
+        try{
+            const TodosFornecedoresEncontrados = await FornecedorServices.filtro(produto)
+
+            return res.status(200).json(TodosFornecedoresEncontrados)
+        } catch{
+            return res.status(500).json(message.error)
         }
-
-        
-
-
     }
 }
 
