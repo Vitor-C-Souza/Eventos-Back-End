@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       imagem_produto:{
-        type: Sequelize.BLOB
+        type: Sequelize.STRING(100)
       },
       createdAt: {
         allowNull: false,

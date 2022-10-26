@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     Descricao_fornecedor: DataTypes.STRING(500),
     nota_fornecedor: DataTypes.INTEGER,
     quantidade_cliente_fornecedor: DataTypes.INTEGER,
-    imagem_fornecedor: DataTypes.BLOB,
+    imagem_fornecedor: DataTypes.STRING(100),
     Celular_fornecedor: DataTypes.BIGINT(11),
     Incricao_estatual_fornecedor: DataTypes.INTEGER,
     valor_max: DataTypes.FLOAT(6),

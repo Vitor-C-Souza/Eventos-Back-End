@@ -51,7 +51,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       imagem_fornecedor:{
-        type: Sequelize.BLOB
+        type: Sequelize.STRING(100)
       }, 
       valor_max:{
         type: Sequelize.FLOAT(6)

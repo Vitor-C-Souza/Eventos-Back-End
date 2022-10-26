@@ -118,7 +118,7 @@ class fornecedorController {
             
             var FornecedoresFiltrados = []
             var count = 0
-            for(var i = (page*5)-5; i < page*5; i++){
+            for(var i = (page*3)-3; i < page*3; i++){
                 
                 if(TodosFornecedoresEncontrados[i] == null){
                     break
