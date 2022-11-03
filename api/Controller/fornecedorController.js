@@ -1,4 +1,5 @@
 const database = require('../models')
+const axios = require('axios')
 
 const { fornecedorServices } = require('../services')
 const FornecedorServices = new fornecedorServices()
@@ -6,8 +7,6 @@ const FornecedorServices = new fornecedorServices()
 const { loginServices } = require('../services')
 const LoginServices = new loginServices()
 
-const { produtoServices } = require('../services')
-const ProdutoServices = new produtoServices()
 
 class fornecedorController {
 
@@ -146,6 +145,24 @@ class fornecedorController {
             return res.status(200).json(TodosFornecedoresEncontrados)
         } catch{
             return res.status(500).json(message.error)
+        }
+    }
+
+    static async localizacao(req, res){
+        const { cep } = req.params
+
+        try{
+            
+            axios.get('https://maps.googleapis.com/maps/api/geocode/json?address='+ cep +'&key=AIzaSyDGVlSPcnEHGtRHRJDsmZHOukQofy-KawI').then(function(value){                
+                const apipub = value.data
+                
+                return res.status(200).json(apipub)                             
+            })
+
+            // return res.status(200).json(apipub)
+        }
+        catch{
+            return res.status(500).json("fudeu")
         }
     }
 }

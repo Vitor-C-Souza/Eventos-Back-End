@@ -11,6 +11,7 @@ router.delete('/api/fornecedor/:id', fornecedorController.apagaFornecedor)
 router.post('/api/fornecedor/completo', fornecedorController.CriarFornecedorComSenha )
 router.get('/api/produto/forncedor/:produto/page/:page', fornecedorController.FiltroFornecedorProdutoPagina)
 router.get('/api/produto/forncedor/:produto', fornecedorController.FiltroFornecedorProduto)
+router.get('/api/fornecedor/localizacao/:cep', fornecedorController.localizacao)
 
 
 module.exports = router
