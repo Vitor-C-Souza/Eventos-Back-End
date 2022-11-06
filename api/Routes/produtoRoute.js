@@ -4,6 +4,7 @@ const produtoController = require('../Controller/produtoController')
 const router = Router()
 
 router.get('/api/fornecedor/:idfornecedor/produto', produtoController.pegaTodosOsProdutosDeUmFornecedor)
+router.get('/api/fornecedor/:idfornecedor/produto/page/:page', produtoController.pegaTodosOsProdutosDeUmFornecedorPaginado)
 router.get('/api/fornecedor/:idfornecedor/produto/:idproduto', produtoController.pegaUmProduto)
 router.post('/api/fornecedor/:idfornecedor/produto', produtoController.criaProduto)
 router.put('/api/fornecedor/:idfornecedor/produto/:idproduto', produtoController.atualizaProduto)

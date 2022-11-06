@@ -3,21 +3,50 @@ const database = require('../models')
 const { produtoServices } = require('../services')
 const ProdutoServices = new produtoServices()
 
+
 class produtoController {
 
     static async pegaTodosOsProdutosDeUmFornecedor(req, res) {
         const { idfornecedor } = req.params
         
-      try {
+        try {
 
-        const todosOsProdutosDeUmFornecedor = await ProdutoServices.pegaTodosOsRegistros(idfornecedor)
-        return res.status(200).json(todosOsProdutosDeUmFornecedor)
+            const todosOsProdutosDeUmFornecedor = await ProdutoServices.pegaTodosOsRegistros(idfornecedor)
+            return res.status(200).json(todosOsProdutosDeUmFornecedor)
 
-      } catch (error) {
+        } catch (error) {
 
-        return res.status(500).json(error.message)
+            return res.status(500).json(error.message)
       
+        }
     }
+
+    static async pegaTodosOsProdutosDeUmFornecedorPaginado(req, res) {
+        const { idfornecedor, page } = req.params
+        
+        try {
+
+            const todosOsProdutosDeUmFornecedor = await ProdutoServices.pegaTodosOsRegistros(idfornecedor)
+        
+            var produtosPaginados = []
+            var count = 0
+            for(var i = (page*3)-3; i < page*3; i++){
+
+                if(todosOsProdutosDeUmFornecedor[i] == null){
+                    break
+                }
+                produtosPaginados[count] = todosOsProdutosDeUmFornecedor[i]
+
+                count++
+
+            }
+            return res.status(200).json(produtosPaginados)
+
+        } catch (error) {
+
+            return res.status(500).json(error.message)
+      
+        }
     }
 
     static async pegaUmProduto(req, res) {

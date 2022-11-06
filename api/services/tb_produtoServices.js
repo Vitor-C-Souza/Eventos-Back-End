@@ -6,9 +6,9 @@ class ProdutoServices extends Services {
         super('tb_produto')
     }
 
-    async pegaTodosOsRegistros(idfornecedor){        
+    async pegaTodosOsRegistros(idfornecedor){
         return database[this.nomeDoModelo]
-            .findOne( { where: { id_fornecedor: Number(idfornecedor) }})
+            .findAll( { where: { id_fornecedor: Number(idfornecedor) }})
     }
 
     async pegaUmRegistro(idFornecedor,idProduto){
@@ -43,6 +43,11 @@ class ProdutoServices extends Services {
     async CountFilter(produto){
         return database[this.nomeDoModelo]
             .count( { where: {Nome_produto: produto} })
+    }
+
+    async produtosDoFornecedor(idfornecedor){
+        return database[this.nomeDoModelo]
+            .findAll({ where: { id_fornecedor: idfornecedor } })
     }
 }
 

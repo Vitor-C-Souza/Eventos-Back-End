@@ -5,7 +5,6 @@ const { fornecedorServices } = require('../services')
 const FornecedorServices = new fornecedorServices()
 
 const { loginServices } = require('../services')
-const { GEOMETRY } = require('sequelize')
 const LoginServices = new loginServices()
 
 
@@ -158,9 +157,7 @@ class fornecedorController {
                 const apipub = value.data
                 
                 return res.status(200).json(apipub.results[0].geometry.location)                             
-            })
-
-            // return res.status(200).json(apipub)
+            })            
         }
         catch{
             return res.status(500).json("fudeu")
