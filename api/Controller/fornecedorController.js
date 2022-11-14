@@ -154,9 +154,13 @@ class fornecedorController {
         try{
             
             axios.get('https://maps.googleapis.com/maps/api/geocode/json?address='+ cep +'&key=AIzaSyDGVlSPcnEHGtRHRJDsmZHOukQofy-KawI').then(function(value){                
-                const apipub = value.data
+                if(value.data.status == "ZERO_RESULTS"){
+                    return res.status(200).json(null)
+                }else{
+                    const apipub = value.data
                 
-                return res.status(200).json(apipub.results[0].geometry.location)                             
+                    return res.status(200).json(apipub.results[0].geometry.location)
+                }                                           
             })            
         }
         catch{
