@@ -7,6 +7,8 @@ const FornecedorServices = new fornecedorServices()
 const { loginServices } = require('../services')
 const LoginServices = new loginServices()
 
+const { produtoServices } = require('../services')
+const ProdutoServices = new produtoServices()
 
 class fornecedorController {
 
@@ -166,6 +168,27 @@ class fornecedorController {
         catch{
             return res.status(500).json("fudeu")
         }
+    }
+
+    static async pesquisarFornecedor (req,res){
+        const { pesquisa } = req.params
+
+        try{
+            const produtosEncontrados = await ProdutoServices.pesquisarProduto(pesquisa)
+
+            let fornecedoresDosProdutos = []
+
+            for( let i = 0; i < produtosEncontrados.length; i++){
+                fornecedoresDosProdutos[i] = await FornecedorServices.TodosOsFornecedoresProdutos(Number(produtosEncontrados[i].id_fornecedor))
+            }
+
+            return res.status(200).json(fornecedoresDosProdutos)
+        }
+        catch{
+            return res.status(500).json("Perdeu")
+        }
+
+    
     }
 }
 

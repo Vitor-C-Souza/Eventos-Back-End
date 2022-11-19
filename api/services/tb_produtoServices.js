@@ -49,6 +49,14 @@ class ProdutoServices extends Services {
         return database[this.nomeDoModelo]
             .findAll({ where: { id_fornecedor: idfornecedor } })
     }
+
+    async pesquisarProduto(pesquisa){
+        return database[this.nomeDoModelo]
+            .findAll({ 
+                attributes: ['id_fornecedor'],
+                where: { Nome_produto: pesquisa } 
+            })
+    }
 }
 
 module.exports = ProdutoServices

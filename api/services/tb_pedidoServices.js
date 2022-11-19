@@ -19,7 +19,8 @@ class PedidoServices extends Services {
     }
 
     async atualizaRegistro(NovaInfo, id_fornecedor, id_usuario, id_produto, id_pedido){
-        return super.atualizaRegistros(NovaInfo, { id: Number(id_pedido), id_fornecedor: Number(id_fornecedor), id_usuario: Number(id_usuario), id_produto: Number(id_produto) })    }
+        return super.atualizaRegistros(NovaInfo, { id: Number(id_pedido), id_fornecedor: Number(id_fornecedor), id_usuario: Number(id_usuario), id_produto: Number(id_produto) })    
+    }
 
     async apagaRegistro(id){
         return super.apagaRegistro(id)

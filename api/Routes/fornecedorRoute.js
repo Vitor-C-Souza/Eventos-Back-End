@@ -12,6 +12,7 @@ router.post('/api/fornecedor/completo', fornecedorController.CriarFornecedorComS
 router.get('/api/produto/forncedor/:produto/page/:page', fornecedorController.FiltroFornecedorProdutoPagina)
 router.get('/api/produto/forncedor/:produto', fornecedorController.FiltroFornecedorProduto)
 router.get('/api/fornecedor/localizacao/:cep', fornecedorController.localizacao)
+router.get('/api/produtos/fornecedor/:pesquisa', fornecedorController.pesquisarFornecedor)
 
 
 module.exports = router

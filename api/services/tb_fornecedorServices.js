@@ -41,6 +41,13 @@ class fornecedorServices extends Services {
         return database[this.nomeDoModelo].findAll( { where: { Tipo_servico_fonercedor: tipoServico }})
 
     }
+
+    async TodosOsFornecedoresProdutos(id){
+        return database[this.nomeDoModelo]
+            .findOne( {            
+                where: {id: id}
+            })
+    }
 }
 
 module.exports = fornecedorServices
