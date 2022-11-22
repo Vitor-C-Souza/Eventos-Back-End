@@ -177,11 +177,13 @@ class fornecedorController {
             const produtosEncontrados = await ProdutoServices.pesquisarProduto(pesquisa)
 
             let fornecedoresDosProdutos = []
+            let count = 0
 
-            for( let i = 0; i < produtosEncontrados.length; i++){
-                fornecedoresDosProdutos[i] = await FornecedorServices.TodosOsFornecedoresProdutos(Number(produtosEncontrados[i].id_fornecedor))
+            for(let i = 0; i < produtosEncontrados.length; i++){     
+                fornecedoresDosProdutos[count] =  await FornecedorServices.TodosOsFornecedoresProdutos(Number(produtosEncontrados[i].id_fornecedor))        
+                count++      
+                
             }
-
             return res.status(200).json(fornecedoresDosProdutos)
         }
         catch{

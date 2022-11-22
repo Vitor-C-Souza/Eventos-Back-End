@@ -1,5 +1,7 @@
 const Services = require('./Services')
 const database = require('../models')
+const { Op } = require('sequelize')
+
 
 class ProdutoServices extends Services {
     constructor(){
@@ -54,7 +56,8 @@ class ProdutoServices extends Services {
         return database[this.nomeDoModelo]
             .findAll({ 
                 attributes: ['id_fornecedor'],
-                where: { Nome_produto: pesquisa } 
+                where: { Nome_produto: {[Op.substring]: pesquisa} },
+                group: 'id_fornecedor'
             })
     }
 }
