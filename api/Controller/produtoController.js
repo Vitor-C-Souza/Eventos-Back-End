@@ -12,7 +12,12 @@ class produtoController {
         try {
 
             const todosOsProdutosDeUmFornecedor = await ProdutoServices.pegaTodosOsRegistros(idfornecedor)
-            return res.status(200).json(todosOsProdutosDeUmFornecedor)
+
+            if( todosOsProdutosDeUmFornecedor != ''){
+                return res.status(200).json(todosOsProdutosDeUmFornecedor)
+            }else{
+                return res.status(200).json(0)
+            }
 
         } catch (error) {
 

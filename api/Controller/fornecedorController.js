@@ -176,19 +176,17 @@ class fornecedorController {
         try{
             const produtosEncontrados = await ProdutoServices.pesquisarProduto(pesquisa)            
 
-            if(produtosEncontrados != ''){
-                let fornecedoresDosProdutos = []
-                let count = 0
+            
+            let fornecedoresDosProdutos = []
+            let count = 0
 
-                for(let i = 0; i < produtosEncontrados.length; i++){     
-                    fornecedoresDosProdutos[count] =  await FornecedorServices.TodosOsFornecedoresProdutos(Number(produtosEncontrados[i].id_fornecedor))        
-                    count++      
+            for(let i = 0; i < produtosEncontrados.length; i++){     
+                fornecedoresDosProdutos[count] =  await FornecedorServices.TodosOsFornecedoresProdutos(Number(produtosEncontrados[i].id_fornecedor))        
+                count++      
                 
-                }
-                return res.status(200).json(fornecedoresDosProdutos)
-            } else {
-                return res.status(200).json(0)
-            }            
+            }
+            return res.status(200).json(fornecedoresDosProdutos)
+      
         }
         catch{
             return res.status(500).json("Perdeu")
